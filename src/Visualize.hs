@@ -6,7 +6,6 @@ import Codec.Picture
 import qualified Data.Map as M
 import Control.Arrow ((&&&))
 import Data.Word (Word8)
-import Debug.Trace (traceShow)
 
 lat :: (Double, Double, Int) -> Double
 lat (l, _, _) = l
@@ -25,7 +24,7 @@ toImage d =
         maxY = maximum (lon <$> d)
         dX = maxX - minX
         dY = maxY - minY
-        w = 1024
+        w = 600
         h = dY * w / dX
         bucket :: (Double, Double, Int) -> (Int, Int)
         bucket p = let x = floor ((lat p - minX) * w / dX)
@@ -36,19 +35,20 @@ toImage d =
         m :: M.Map (Int, Int) [Int]
         m = M.fromListWith (<>) ((bucket &&& (pure . score)) <$> d)
 
-        normScore scores = fromIntegral (sum scores) / fromIntegral (length scores) 
+        avg scores = fromIntegral (sum scores) / fromIntegral (length scores) 
         maxR = maximum $ length <$> m
-        maxV = maximum (normScore <$> m)
-        minV = minimum (normScore <$> m)
+        maxV = maximum (avg <$> m)
+        minV = minimum (avg <$> m)
         dV = maxV - minV
 
         pxValue x y =
             case M.lookup (x, y) m of 
                 Nothing -> white
                 Just scores ->  
-                    let blueness = (normScore scores - minV) / dV
+                    let bb = (avg scores - minV) / dV
+                        blueness = bb ** 2 
                         c = (fromIntegral (length scores) / fromIntegral maxR) 
-                        colourness = 1 - (1-c) ** 3
+                        colourness = 1 - (1-c) ** 4
                         toI :: Double -> Word8
                         toI = floor . (*255)
                         g = toI (1-colourness)
