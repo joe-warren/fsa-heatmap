@@ -2,3 +2,6 @@
 
 ![](map.png)
 ![](london.png)
+
+![](map.gif)
+![](london.gif)

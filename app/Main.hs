@@ -2,7 +2,7 @@ module Main (main) where
 
 import DataFile (readData)
 import System.Environment (getArgs)
-import Visualize (visualize)
+import Visualize (visualize, visualizeAnimated)
 
 isLondon :: (Double, Double, Int) -> Bool
 isLondon (lon, lat, _) =
@@ -16,4 +16,7 @@ main = do
     a <- getArgs 
     res <- foldMap readData a
     visualize "map.png" res
+    visualizeAnimated "map.gif" res
+    visualize "london.png" (filter isLondon res)
+    visualizeAnimated "london.gif" (filter isLondon res)
     return ()
