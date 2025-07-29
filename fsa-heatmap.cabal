@@ -1,0 +1,83 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.37.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           fsa-heatmap
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/fsa-heatmap#readme>
+homepage:       https://github.com/githubuser/fsa-heatmap#readme
+bug-reports:    https://github.com/githubuser/fsa-heatmap/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2025 Author name here
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/fsa-heatmap
+
+library
+  exposed-modules:
+      DataFile
+      Visualize
+  other-modules:
+      Paths_fsa_heatmap
+  autogen-modules:
+      Paths_fsa_heatmap
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      JuicyPixels
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , lens
+    , xml
+  default-language: Haskell2010
+
+executable fsa-heatmap-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_fsa_heatmap
+  autogen-modules:
+      Paths_fsa_heatmap
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      JuicyPixels
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , fsa-heatmap
+    , lens
+    , xml
+  default-language: Haskell2010
+
+test-suite fsa-heatmap-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_fsa_heatmap
+  autogen-modules:
+      Paths_fsa_heatmap
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      JuicyPixels
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , fsa-heatmap
+    , lens
+    , xml
+  default-language: Haskell2010
