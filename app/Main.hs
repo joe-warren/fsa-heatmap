@@ -15,5 +15,5 @@ main :: IO ()
 main = do
     a <- getArgs 
     res <- foldMap readData a
-    visualize "map.png" (filter isLondon res)
+    visualize "map.png" res
     return ()
