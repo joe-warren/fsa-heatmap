@@ -48,7 +48,7 @@ toImage d =
                     let bb = (avg scores - minV) / dV
                         blueness = bb ** 2 
                         c = (fromIntegral (length scores) / fromIntegral maxR) 
-                        colourness = (1 - (1-c) ** 2) * 0.7 + 0.3 
+                        colourness = (1 - (1-c) ** 2) * 0.9 + 0.1
                         toI :: Double -> Word8
                         toI = floor . (*255)
                         g = toI (1-colourness)
